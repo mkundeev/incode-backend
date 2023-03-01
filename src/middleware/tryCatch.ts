@@ -11,8 +11,7 @@ export default function tryCatch(middleware: Middleware, status?: number) {
     } catch (err) {
       if (err instanceof HttpError) {
         res.status(err.status).send({ message: err.message });
-      }
-      next(err);
+      } else next(err);
     }
   };
 }
