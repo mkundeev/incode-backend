@@ -10,7 +10,7 @@ const authRouter: Router = Router();
 authRouter.post(
   "/register",
   validation(userSchema),
-  tryCatch(authController.registerUser.bind(authController))
+  tryCatch(authController.registerUser.bind(authController), 201)
 );
 
 authRouter.post(
@@ -22,7 +22,7 @@ authRouter.post(
 authRouter.post(
   "/logout",
   authMW,
-  tryCatch(authController.logoutUser.bind(authController))
+  tryCatch(authController.logoutUser.bind(authController), 204)
 );
 
 export default authRouter;

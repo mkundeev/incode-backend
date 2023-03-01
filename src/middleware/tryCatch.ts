@@ -10,7 +10,7 @@ export default function tryCatch(middleware: Middleware, status?: number) {
       res.status(status || 200).send(response);
     } catch (err) {
       if (err instanceof HttpError) {
-        res.status(err.status).send(err.message);
+        res.status(err.status).send({ message: err.message });
       }
       next(err);
     }

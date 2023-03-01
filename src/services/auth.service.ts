@@ -26,14 +26,14 @@ export default class AuthService {
     if (process.env.JWT_TOKEN_EXPIRATION) {
       await newUser.createToken("token", process.env.JWT_TOKEN_EXPIRATION);
       const { token } = newUser;
-      return token;
+      return { token };
     }
   }
 
   async loginUser(user: IUserRegistr) {
     const currentUser = await User.findOne({ email: user.email });
     if (!currentUser) {
-      throw new NotFound("User with such email does not exist");
+      throw new NotFound("Wrong email");
     }
     if (!(await bcrypt.compare(user.password, currentUser.password))) {
       throw new NotFound("Wrong password");
@@ -41,7 +41,7 @@ export default class AuthService {
     if (process.env.JWT_TOKEN_EXPIRATION) {
       await currentUser.createToken("token", process.env.JWT_TOKEN_EXPIRATION);
       const { token } = currentUser;
-      return token;
+      return { token };
     }
   }
 

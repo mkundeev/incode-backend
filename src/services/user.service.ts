@@ -58,6 +58,6 @@ export default class UserService {
     await User.findByIdAndUpdate(subordinateId, {
       boss: newBossId,
     });
-    return "Boss for subordinate was changed";
+    return { message: "Boss for subordinate was changed" };
   }
 }
