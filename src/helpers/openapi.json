@@ -97,6 +97,22 @@
               }
             }
           },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "404": {
             "description": "Wrong password/Wrong email",
             "content": {
@@ -149,6 +165,22 @@
                     "message": {
                       "type": "string",
                       "example": "No Content"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "error message"
                     }
                   }
                 }
@@ -283,6 +315,22 @@
                     "message": {
                       "type": "string",
                       "example": "Boss for subordinate was changed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "error message"
                     }
                   }
                 }
