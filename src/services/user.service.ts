@@ -36,10 +36,12 @@ export default class UserService {
         "Curent boss is already in charge of this suborninate"
       );
     }
+    // add new subordinate to subordinates array of new boss
     await User.findByIdAndUpdate(newBossId, {
       $push: { subordinatesId: subordinateId },
       role: "boss",
     });
+    // delete subordinate from subordinates array of previos boss
     const previousBossId = subordinate.boss;
     const previousBoss = await User.findByIdAndUpdate(
       previousBossId,
@@ -50,11 +52,13 @@ export default class UserService {
         new: true,
       }
     );
+    // check if old boss has any subordinates
     if (previousBoss?.subordinatesId.length === 0) {
       await User.findByIdAndUpdate(previousBossId, {
         role: "user",
       });
     }
+    // appoint new boss to subordinate
     await User.findByIdAndUpdate(subordinateId, {
       boss: newBossId,
     });
