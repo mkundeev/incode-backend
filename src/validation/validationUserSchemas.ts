@@ -2,12 +2,12 @@ import * as Joi from "joi";
 import jwt, { Secret } from "jsonwebtoken";
 import { IUser } from "../types/user.type";
 
-const passwordPattern =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-
 export const userSchema = Joi.object<Omit<IUser, "token">>({
   email: Joi.string().email().required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string()
+    .min(8)
+    .messages({ "string.min": "Password should have at least  8 characters" })
+    .required(),
 }).required();
 
 export const validateRefreshTokenSchema = (message: string) =>
