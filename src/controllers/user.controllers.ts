@@ -7,7 +7,7 @@ export class UserController {
 
   async getAllSubordinates(req: Request) {
     const { id, role } = req;
-    if (role === "user") return { message: "No subordinates" };
+    if (role === "user") return [];
     return await this.userService.getAllSubordinates(id, role);
   }
 
